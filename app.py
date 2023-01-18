@@ -415,7 +415,11 @@ def get_job_requisition():
             print(lastExistingJR)
             if lastExistingJR is not None:
                 ExistingJR_String=dumps(lastExistingJR)
-                response=json.loads(ExistingJR_String)
+                Job_Requisition_JSON = {"Job_Requisition": lastExistingJR}
+                print(Job_Requisition_JSON)
+                json_dumps = json.dumps(Job_Requisition_JSON, default=str)
+                response = json.loads(json_dumps)
+               # response=json.loads(ExistingJR_String)
                 return response
             else:
                 response["message"] = "JR" + input_JRId+" not found."
