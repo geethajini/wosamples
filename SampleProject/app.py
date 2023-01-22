@@ -64,7 +64,7 @@ def getUserDetailsUsingName():
         if request.method == 'GET':
             userName = request.args.get('userName')
             print(userName)
-            response = {"userId": "123"}
+            response = "123"
         else:
             response = {"errorCode": "ER102",
                         "errorMessage": "Could not find the JRs"}
