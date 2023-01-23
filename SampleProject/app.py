@@ -93,6 +93,24 @@ def getAllUsers():
                     "errorMessage": e}
     return response
 
+@app.route('/getUserIdFromUserDetails', methods=['GET'])
+def getUserIdFromUserDetails():
+    try:
+        if request.method == 'GET':
+            userDetails = request.get_json()
+            #  print (userName)
+            if userDetails is not None and "userId" in userDetails:
+                response = userDetails["userId"]
+            else:
+                response="No JR Id Found"
+        else:
+            response = {"errorCode": "ER102",
+                        "errorMessage": "Could not find the users"}
+    except Exception as e:
+
+        response = {"errorCode": "ER101",
+                    "errorMessage": e}
+    return response
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=8081)
