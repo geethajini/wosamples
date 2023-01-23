@@ -64,7 +64,7 @@ def getUserDetailsUsingName():
         if request.method == 'GET':
             userName = request.args.get('userName')
             print(userName)
-            response = "123"
+            response =  {"userId": "123"}
         else:
             response = {"errorCode": "ER102",
                         "errorMessage": "Could not find the JRs"}
@@ -93,14 +93,14 @@ def getAllUsers():
                     "errorMessage": e}
     return response
 
-@app.route('/getUserIdFromUserDetails', methods=['GET'])
+@app.route('/getUserIdFromUserDetails', methods=['POST'])
 def getUserIdFromUserDetails():
     try:
-        if request.method == 'GET':
+        if request.method == 'POST':
             userDetails = request.get_json()
             #  print (userName)
             if userDetails is not None and "userId" in userDetails:
-                response = userDetails["userId"]
+                response = {"userId":""+userDetails["userId"]+""}
             else:
                 response="No JR Id Found"
         else:
@@ -111,6 +111,7 @@ def getUserIdFromUserDetails():
         response = {"errorCode": "ER101",
                     "errorMessage": e}
     return response
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=8081)
